@@ -48,6 +48,4 @@ echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_vagrant
 /usr/bin/chmod 0600 /home/vagrant/.ssh/authorized_keys
 
 pacman -Sy zerotier-one
-systemctl start zerotier-one.service
 systemctl enable zerotier-one.service
-zerotier-cli join 6ab565387ad1717b
