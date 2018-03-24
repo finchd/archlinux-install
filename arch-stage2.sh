@@ -1,34 +1,41 @@
 #!/usr/bin/env bash
 
-#set localtime
-ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+echo "setup grub 2"
+grub-install --target=i386-pc /dev/sda3
+grub-mkconfig -o /boot/grub/grub.cfg
+
+echo "set localtime"
+ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 
 hwclock --systohc
 
 echo "Uncomment en_US.UTF-8 UTF-8 and other needed localizations in /etc/locale.gen, and generate them with:"
 
-# locale-gen
+#en_US.UTF-8 is the default, generate:
+locale-gen
 
 #Set the LANG variable in locale.conf(5) accordingly, for example:
 
 #/etc/locale.conf
-
-LANG=en_US.UTF-8
+#LANG=en_US.UTF-8
 
 #If you set the keyboard layout, make the changes persistent in vconsole.conf(5):
 
 #/etc/vconsole.conf
-
-KEYMAP=de-latin1
+#KEYMAP=de-latin1
 
 echo "aggron" > /etc/hostname
+echo "add hostname to /etc/hosts"
+echo "127.0.0.1	localhost
+::1		localhost
+127.0.1.1	aggron.dondon.ninja	aggron" >> /etc/hosts
 
 echo "configure network manually"
-/usr/bin/ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
-/usr/bin/ln -s '/usr/lib/systemd/system/dhcpcd@.service' '/etc/systemd/system/multi-user.target.wants/dhcpcd@eth0.service'
-/usr/bin/sed -i 's/#UseDNS yes/UseDNS yes/' /etc/ssh/sshd_config
-/usr/bin/systemctl enable sshd.service
-systemctl start sshd.service
+ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
+ln -s '/usr/lib/systemd/system/dhcpcd@.service' '/etc/systemd/system/multi-user.target.wants/dhcpcd@eth0.service'
+systemctl enable dhcpcd.service
+sed -i 's/#UseDNS yes/UseDNS yes/' /etc/ssh/sshd_config
+systemctl enable sshd.service
 
 echo "make ramfs"
 mkinitcpio -p linux
@@ -38,14 +45,15 @@ passwd
 
 echo "make users"
 
-/usr/bin/useradd --password ${PASSWORD} --comment 'Vagrant User' --create-home --user-group vagrant
+#Vagrant User w/ password-less sudo
+useradd --password ${PASSWORD} --comment 'Vagrant User' --create-home --user-group vagrant
 echo 'Defaults env_keep += "SSH_AUTH_SOCK"' > /etc/sudoers.d/10_vagrant
 echo 'vagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers.d/10_vagrant
-/usr/bin/chmod 0440 /etc/sudoers.d/10_vagrant
-/usr/bin/install --directory --owner=vagrant --group=vagrant --mode=0700 /home/vagrant/.ssh
-/usr/bin/curl --output /home/vagrant/.ssh/authorized_keys --location https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
-/usr/bin/chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
-/usr/bin/chmod 0600 /home/vagrant/.ssh/authorized_keys
+chmod 0440 /etc/sudoers.d/10_vagrant
+install --directory --owner=vagrant --group=vagrant --mode=0700 /home/vagrant/.ssh
+curl --output /home/vagrant/.ssh/authorized_keys --location https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
+chown vagrant:vagrant /home/vagrant/.ssh/authorized_keys
+chmod 0600 /home/vagrant/.ssh/authorized_keys
 
 pacman -Sy zerotier-one
 systemctl enable zerotier-one.service
