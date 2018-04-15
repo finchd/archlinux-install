@@ -8,5 +8,5 @@
       changed_when: false
       failed_when: lscpu_output.stdout is defined and "Virtualization" not in lscpu_output.stdout
     - name: Output results
-      debug: 
+      debug:
         var: lscpu_output.stdout
