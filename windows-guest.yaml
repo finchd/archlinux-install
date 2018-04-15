@@ -1,0 +1,8 @@
+---
+tasks:
+  - name: Define the Windows guest for GPU Pass-through
+    virt:
+        name: win10-gpu-01
+        command: define
+        autostart: yes
+        xml: "{{ lookup('template', 'windows-10-gpu.xml.j2) }}"

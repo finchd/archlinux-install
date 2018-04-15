@@ -1,0 +1,11 @@
+---
+- name:
+  hosts: all
+  tasks:
+    - name:
+      package:
+        name: glances
+        state: latest
+        #use: pacman
+#    - name:
+#      file:

@@ -1,0 +1,33 @@
+ansible
+ansible-list
+docker
+git
+glances
+grub
+hddtemp - for glances
+iftop
+intel-ucode
+iotop
+libvirt
+lsb-release - for cross-os compatibility
+lvm2
+mosh
+net-tools
+nmap
+openssh
+os-prober
+pv
+python - v3 for glances
+python-bottle - for glances webui
+python-matplotlib - for glances
+python-netifaces - for glances
+python2-boto3 - for ansible
+python2-jmespath - for ansible
+python2-pip - install awscli, awsebcli, aws-shell as my user
+python2-pywinrm - for ansible
+rclone
+rsync
+sl
+tmux
+vim
+zerotier-one
