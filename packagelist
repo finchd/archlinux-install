@@ -11,6 +11,7 @@ iotop
 libvirt
 lsb-release - for cross-os compatibility
 lvm2
+lsof
 mosh
 net-tools
 nmap
@@ -27,6 +28,7 @@ python2-pip - install awscli, awsebcli, aws-shell as my user
 python2-pywinrm - for ansible
 rclone
 rsync
+smartmontools
 sl
 tmux
 vim
