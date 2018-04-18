@@ -1,6 +1,7 @@
 ansible
 ansible-list
 bind-tools  #dig and other dns tools
+dmidecode #required by libvirtd/kvm not pulled in
 docker
 git
 glances
@@ -27,6 +28,7 @@ python2-boto3	# for ansible
 python2-jmespath	# for ansible
 python2-pip	# install awscli, awsebcli, aws-shell as my user
 python2-pywinrm	# for ansible
+qemu-headless #required by libvirtd/kvm not pulled in
 rclone
 rsync
 smartmontools
