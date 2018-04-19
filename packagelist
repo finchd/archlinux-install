@@ -19,6 +19,7 @@ net-tools
 nmap
 openssh
 os-prober
+ovmf # for EFI guests in KVM
 pv
 python	# v3 for glances
 python-bottle	# for glances webui
@@ -36,4 +37,5 @@ sl
 tmux
 vim
 virt-install  # quick libvirt builder
+virt-manager # gave up and got a gui for KVM
 zerotier-one
