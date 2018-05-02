@@ -32,6 +32,7 @@ rsync
 smartmontools
 sl
 tmux
+unrar
 vim
 virt-install  # quick libvirt builder
 zerotier-one
