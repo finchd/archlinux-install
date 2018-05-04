@@ -41,3 +41,13 @@
 ## ...
 #since that also didn't work, I'm adding:
 # kernel parameter video=efifb:off
+
+#xcontinued down arch vfio guide for nvidia code 43 issues - found newest bios rom on https://www.techpowerup.com/vgabios/187068/asus-gtx1070-8192-161020-1
+## Build Date            : 10/07/16
+## Modification Date     : 10/20/16
+
+# to use in place of the ROM version on teh card: 86.04.26.00.61 from 
+## Build Date            : 06/20/16
+## Modification Date     : 07/11/16
+# inside vm xml only
+
