@@ -35,6 +35,7 @@ rsync
 smartmontools
 sl
 tmux
+unzip
 vim
 virt-install  # quick libvirt builder
 virt-manager # gave up and got a gui for KVM
