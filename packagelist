@@ -25,10 +25,11 @@ python	# v3 for glances
 python-bottle	# for glances webui
 python-matplotlib	# for glances
 python-netifaces	# for glances
+python2-pip	# install awscli, awsebcli, aws-shell as my user
 python2-boto3	# for ansible
 python2-jmespath	# for ansible
-python2-pip	# install awscli, awsebcli, aws-shell as my user
 python2-pywinrm	# for ansible
+python2-py-cpuinfo # cpuinfo2 stuff
 qemu-headless #required by libvirtd/kvm not pulled in
 rclone
 rsync
