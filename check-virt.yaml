@@ -6,7 +6,9 @@
       command: /usr/bin/lscpu
       register: lscpu_output
       changed_when: false
-      failed_when: lscpu_output.stdout is defined and "Virtualization" not in lscpu_output.stdout
+      failed_when:
+        - ( lscpu_output.stdout is defined )
+        - ( "Virtualization" not in lscpu_output.stdout )
     - name: Output results
       debug:
         var: lscpu_output.stdout
